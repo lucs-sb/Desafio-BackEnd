@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36203.30 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotoHub.API", "MotoHub.API.csproj", "{9238DF7A-E10D-40F9-A263-AC62A415A47B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotoHub.Domain", "..\MotoHub.Domain\MotoHub.Domain.csproj", "{BB305DE8-644C-474C-8C8D-B2B65F66D45D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotoHub.CrossCutting", "..\MotoHub.CrossCutting\MotoHub.CrossCutting.csproj", "{2BBBAFA5-AFC3-49BB-8DDD-0058DC6E786C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotoHub.Application", "..\MotoHub.Application\MotoHub.Application.csproj", "{5A74640B-AD20-44BB-B27E-AEA014DD6CF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotoHub.Repository", "..\MotoHub.Repository\MotoHub.Repository.csproj", "{FFF6C915-1AE6-4F62-BB40-0E5A31473698}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0B0C754D-DCDD-4366-9DF1-72818322F3B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9238DF7A-E10D-40F9-A263-AC62A415A47B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9238DF7A-E10D-40F9-A263-AC62A415A47B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9238DF7A-E10D-40F9-A263-AC62A415A47B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9238DF7A-E10D-40F9-A263-AC62A415A47B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB305DE8-644C-474C-8C8D-B2B65F66D45D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB305DE8-644C-474C-8C8D-B2B65F66D45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB305DE8-644C-474C-8C8D-B2B65F66D45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB305DE8-644C-474C-8C8D-B2B65F66D45D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BBBAFA5-AFC3-49BB-8DDD-0058DC6E786C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BBBAFA5-AFC3-49BB-8DDD-0058DC6E786C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BBBAFA5-AFC3-49BB-8DDD-0058DC6E786C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BBBAFA5-AFC3-49BB-8DDD-0058DC6E786C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A74640B-AD20-44BB-B27E-AEA014DD6CF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A74640B-AD20-44BB-B27E-AEA014DD6CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A74640B-AD20-44BB-B27E-AEA014DD6CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A74640B-AD20-44BB-B27E-AEA014DD6CF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFF6C915-1AE6-4F62-BB40-0E5A31473698}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFF6C915-1AE6-4F62-BB40-0E5A31473698}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFF6C915-1AE6-4F62-BB40-0E5A31473698}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFF6C915-1AE6-4F62-BB40-0E5A31473698}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BB305DE8-644C-474C-8C8D-B2B65F66D45D} = {0B0C754D-DCDD-4366-9DF1-72818322F3B7}
+		{2BBBAFA5-AFC3-49BB-8DDD-0058DC6E786C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{5A74640B-AD20-44BB-B27E-AEA014DD6CF4} = {0B0C754D-DCDD-4366-9DF1-72818322F3B7}
+		{FFF6C915-1AE6-4F62-BB40-0E5A31473698} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A8BDEF0C-10FD-4654-A4AB-15F41B39623D}
+	EndGlobalSection
+EndGlobal
