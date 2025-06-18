@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MotoHub.Application\MotoHub.Application.csproj" />
+    <ProjectReference Include="..\MotoHub.Domain\MotoHub.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
