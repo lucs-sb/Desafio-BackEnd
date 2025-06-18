@@ -10,8 +10,4 @@
     <ProjectReference Include="..\MotoHub.Domain\MotoHub.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Mappers\" />
-  </ItemGroup>
-
 </Project>

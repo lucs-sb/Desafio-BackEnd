@@ -18,8 +18,4 @@
     <ProjectReference Include="..\MotoHub.Domain\MotoHub.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>

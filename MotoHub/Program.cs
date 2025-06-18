@@ -1,3 +1,4 @@
+using MotoHub.API.Mappers;
 using MotoHub.Domain.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<MotoHubDatabaseSettings>(
     builder.Configuration.GetSection("MotoHubDatabase"));
+
+//Mapster
+builder.Services.RegisterMaps();
 
 var app = builder.Build();
 
