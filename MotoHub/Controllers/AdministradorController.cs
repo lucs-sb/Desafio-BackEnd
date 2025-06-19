@@ -6,39 +6,38 @@ using MotoHub.Domain.DTOs;
 using MotoHub.Domain.DTOs.Response;
 using MotoHub.Domain.Interfaces;
 
-namespace MotoHub.API.Controllers
+namespace MotoHub.API.Controllers;
+
+[ApiController]
+[Route("admin")]
+public class AdministradorController : ControllerBase
 {
-    [ApiController]
-    [Route("admin")]
-    public class AdministradorController : ControllerBase
+    private readonly IAdministradorService _administradorService;
+
+    public AdministradorController(IAdministradorService administradorService)
     {
-        private readonly IAdministradorService _administradorService;
+        _administradorService = administradorService;
+    }
 
-        public AdministradorController(IAdministradorService administradorService)
-        {
-            _administradorService = administradorService;
-        }
+    [HttpPost]
+    [AllowAnonymous]
+    public async Task<IActionResult> CreateAsync([FromBody] CreateAdministradorModel createAdministradorModel)
+    {
+        AdministradorDTO administradorDTO = createAdministradorModel.Adapt<AdministradorDTO>();
 
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<IActionResult> CreateAsync([FromBody] CreateAdministradorModel createAdministradorModel)
-        {
-            AdministradorDTO administradorDTO = createAdministradorModel.Adapt<AdministradorDTO>();
+        await _administradorService.CreateAsync(administradorDTO);
 
-            await _administradorService.CreateAsync(administradorDTO);
+        return Accepted();
+    }
 
-            return Accepted();
-        }
+    [HttpPost]
+    [AllowAnonymous]
+    public async Task<IActionResult> LoginAsync([FromBody] LoginModel loginModel)
+    {
+        LoginDTO loginDTO = loginModel.Adapt<LoginDTO>();
 
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<IActionResult> LoginAsync([FromBody] LoginModel loginModel)
-        {
-            LoginDTO loginDTO = loginModel.Adapt<LoginDTO>();
+        LoginResponseDTO loginResponseDTO = await _administradorService.LoginAsync(loginDTO);
 
-            LoginResponseDTO loginResponseDTO = await _administradorService.LoginAsync(loginDTO);
-
-            return StatusCode(StatusCodes.Status200OK, loginResponseDTO);
-        }
+        return StatusCode(StatusCodes.Status200OK, loginResponseDTO);
     }
 }

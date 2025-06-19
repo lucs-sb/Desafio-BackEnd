@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using MotoHub.Domain.DTOs.Response;
-using MotoHub.Domain.Entities;
 using MotoHub.Domain.Interfaces;
 using MotoHub.Domain.Settings;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,11 +16,11 @@ public class TokenService : ITokenService
 
     public TokenService(IOptions<AuthSettings> authSettings) => _authSettings = authSettings;
 
-    public Task<LoginResponseDTO> GenerateToken(Administrador administrador)
+    public Task<LoginResponseDTO> GenerateToken(string id)
     {
         List<Claim> claims =
         [
-            new("Id", administrador.Id!.ToString())
+            new("Id", id)
         ];
 
         DateTime expires = DateTime.UtcNow.AddMinutes(_authSettings.Value.AccessTokenExpirationMinutes);

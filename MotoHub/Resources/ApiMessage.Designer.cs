@@ -70,5 +70,16 @@ namespace MotoHub.API.Resources {
                 return ResourceManager.GetString("Require.Warning", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Campo &apos;{0}&apos; inválido.
+        /// </summary>
+        public static string Invalid_Warning
+        {
+            get
+            {
+                return ResourceManager.GetString("Invalid.Warning", resourceCulture);
+            }
+        }
     }
 }

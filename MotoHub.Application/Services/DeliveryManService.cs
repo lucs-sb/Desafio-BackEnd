@@ -1,35 +1,39 @@
-﻿using MotoHub.Domain.DTOs;
+﻿using Mapster;
+using MotoHub.Domain.DTOs;
+using MotoHub.Domain.Entities;
 using MotoHub.Domain.Interfaces;
-using MotoHub.Domain.Interfaces.Repositories;
+using MotoHub.Domain.Interfaces.Repositories.Base;
 
 namespace MotoHub.Application.Services;
 
 public class DeliveryManService : IDeliveryManService
 {
-    private readonly IDeliveryManRepository _deliveryManRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public DeliveryManService(IDeliveryManRepository deliveryManRepository)
+    public DeliveryManService(IUnitOfWork unitOfWork)
     {
-        _deliveryManRepository = deliveryManRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task CreateAsync(DeliveryManDTO deliveryManDTO)
     {
-        throw new NotImplementedException();
-    }
+        await _unitOfWork.BeginTransactionAsync();
 
-    public Task DeleteByIdentifierAsync(string id)
-    {
-        throw new NotImplementedException();
-    }
+        try
+        {
+            DeliveryMan deliveryMan = deliveryManDTO.Adapt<DeliveryMan>();
 
-    public Task<DeliveryManDTO?> GetByIdentifierAsync(string identifier)
-    {
-        throw new NotImplementedException();
-    }
+            //deliveryMan.Password = _passwordHasher.HashPassword(deliveryMan, deliveryManDTO.Password);
 
-    public Task UpdateAsync(DeliveryManDTO deliveryManDTO)
-    {
-        throw new NotImplementedException();
+            await _unitOfWork.Repository<DeliveryMan>().AddAsync(deliveryMan);
+
+            await _unitOfWork.CommitAsync();
+        }
+        catch
+        {
+            await _unitOfWork.RollbackAsync();
+
+            throw;
+        }
     }
 }
