@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36203.30 d17.14
+VisualStudioVersion = 17.14.36203.30
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotoHub.API", "MotoHub.API.csproj", "{9238DF7A-E10D-40F9-A263-AC62A415A47B}"
 EndProject
@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotoHub.CrossCutting", "..\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotoHub.Application", "..\MotoHub.Application\MotoHub.Application.csproj", "{5A74640B-AD20-44BB-B27E-AEA014DD6CF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotoHub.Repository", "..\MotoHub.Repository\MotoHub.Repository.csproj", "{FFF6C915-1AE6-4F62-BB40-0E5A31473698}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotoHub.Infrastructure", "..\MotoHub.Repository\MotoHub.Infrastructure.csproj", "{FFF6C915-1AE6-4F62-BB40-0E5A31473698}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject

@@ -4,13 +4,13 @@ using MotoHub.Domain.Entities;
 using MotoHub.Domain.Interfaces.Repositories;
 using MotoHub.Domain.Settings;
 
-namespace MotoHub.Repository;
+namespace MotoHub.Infrastructure.Repositories;
 
-public class RentalRepository : IRentalRepository
+public class AdministradorRepository : IAdministradorRepository
 {
     private readonly IMongoDatabase _database;
 
-    public RentalRepository(IOptions<MotoHubDatabaseSettings> motoHubDatabaseSettings)
+    public AdministradorRepository(IOptions<MotoHubDatabaseSettings> motoHubDatabaseSettings)
     {
         var mongoClient = new MongoClient(
              motoHubDatabaseSettings.Value.ConnectionString);
@@ -19,22 +19,23 @@ public class RentalRepository : IRentalRepository
             motoHubDatabaseSettings.Value.DatabaseName);
     }
 
-    public Task CreateAsync(Rental rental)
+    public async Task CreateAsync(Administrador administrador)
+    {
+        await _database.GetCollection<Administrador>(nameof(Administrador))
+            .InsertOneAsync(administrador);
+    }
+
+    public Task DeleteByIdentifierAsync(string id)
     {
         throw new NotImplementedException();
     }
 
-    public Task DeleteAsync(int id)
+    public Task<Administrador?> GetByIdentifierAsync(string identifier)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Rental?> GetByIdAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task UpdateAsync(Rental rental)
+    public Task UpdateAsync(Administrador administrador)
     {
         throw new NotImplementedException();
     }

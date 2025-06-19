@@ -1,20 +1,41 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using MotoHub.API.Mappers;
-using MotoHub.Domain.Settings;
+using MotoHub.CrossCutting.IoC;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+}).ConfigureApiBehaviorOptions(options =>
+{
+    options.InvalidModelStateResponseFactory = context => new CustomInvalidModelError().CustomErrorResponse(context);
+});
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.Configure<MotoHubDatabaseSettings>(
-    builder.Configuration.GetSection("MotoHubDatabase"));
+// Dependences Injections
+builder.Services.AddApplicationDI();
+builder.Services.AddAInfrastructureDI();
+builder.Services.AddSettings(builder.Configuration);
+
+//FluentValidation
+builder.Services.AddFluentValidationAutoValidation()
+    .AddFluentValidationClientsideAdapters()
+    .AddValidatorsFromAssemblyContaining<Program>();
 
 //Mapster
 builder.Services.RegisterMaps();
+
+builder.Services.AddAuthenticationSettings(builder.Configuration);
+
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -26,6 +47,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

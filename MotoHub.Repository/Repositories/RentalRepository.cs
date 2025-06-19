@@ -4,13 +4,13 @@ using MotoHub.Domain.Entities;
 using MotoHub.Domain.Interfaces.Repositories;
 using MotoHub.Domain.Settings;
 
-namespace MotoHub.Repository;
+namespace MotoHub.Infrastructure.Repositories;
 
-public class MotorcycleRepository : IMotorcycleRepository
+public class RentalRepository : IRentalRepository
 {
     private readonly IMongoDatabase _database;
 
-    public MotorcycleRepository(IOptions<MotoHubDatabaseSettings> motoHubDatabaseSettings)
+    public RentalRepository(IOptions<MotoHubDatabaseSettings> motoHubDatabaseSettings)
     {
         var mongoClient = new MongoClient(
              motoHubDatabaseSettings.Value.ConnectionString);
@@ -19,22 +19,22 @@ public class MotorcycleRepository : IMotorcycleRepository
             motoHubDatabaseSettings.Value.DatabaseName);
     }
 
-    public Task CreateAsync(Motorcycle motorcycle)
+    public Task CreateAsync(Rental rental)
     {
         throw new NotImplementedException();
     }
 
-    public Task DeleteByIdentifierAsync(string identifier)
+    public Task DeleteAsync(int id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Motorcycle?> GetByIdentifierAsync(string identifier)
+    public Task<Rental?> GetByIdAsync(int id)
     {
         throw new NotImplementedException();
     }
 
-    public Task UpdateAsync(Motorcycle motorcycle)
+    public Task UpdateAsync(Rental rental)
     {
         throw new NotImplementedException();
     }

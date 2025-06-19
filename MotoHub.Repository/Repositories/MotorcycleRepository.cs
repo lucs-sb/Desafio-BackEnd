@@ -4,13 +4,13 @@ using MotoHub.Domain.Entities;
 using MotoHub.Domain.Interfaces.Repositories;
 using MotoHub.Domain.Settings;
 
-namespace MotoHub.Repository;
+namespace MotoHub.Infrastructure.Repositories;
 
-public class DeliveryManRepository : IDeliveryManRepository
+public class MotorcycleRepository : IMotorcycleRepository
 {
     private readonly IMongoDatabase _database;
 
-    public DeliveryManRepository(IOptions<MotoHubDatabaseSettings> motoHubDatabaseSettings)
+    public MotorcycleRepository(IOptions<MotoHubDatabaseSettings> motoHubDatabaseSettings)
     {
         var mongoClient = new MongoClient(
              motoHubDatabaseSettings.Value.ConnectionString);
@@ -19,7 +19,7 @@ public class DeliveryManRepository : IDeliveryManRepository
             motoHubDatabaseSettings.Value.DatabaseName);
     }
 
-    public Task CreateAsync(DeliveryMan deliveryMan)
+    public Task CreateAsync(Motorcycle motorcycle)
     {
         throw new NotImplementedException();
     }
@@ -29,12 +29,12 @@ public class DeliveryManRepository : IDeliveryManRepository
         throw new NotImplementedException();
     }
 
-    public Task<DeliveryMan?> GetByIdentifierAsync(string identifier)
+    public Task<Motorcycle?> GetByIdentifierAsync(string identifier)
     {
         throw new NotImplementedException();
     }
 
-    public Task UpdateAsync(DeliveryMan deliveryMan)
+    public Task UpdateAsync(Motorcycle motorcycle)
     {
         throw new NotImplementedException();
     }

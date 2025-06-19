@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MotoHub.Domain\MotoHub.Domain.csproj" />
+    <ProjectReference Include="..\MotoHub.Repository\MotoHub.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
