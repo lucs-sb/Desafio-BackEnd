@@ -16,8 +16,6 @@ public class CreateMotorcycleModelValidator : AbstractValidator<CreateMotorcycle
 
         RuleFor(x => x.LicensePlate)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.LicensePlate)))
-            .Matches("^(?=.*[A-Z0-9])[A-Z0-9]{7}$")
             .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.LicensePlate)));
 
         RuleFor(x => x.Model)

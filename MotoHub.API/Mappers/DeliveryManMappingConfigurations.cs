@@ -11,6 +11,7 @@ public static class DeliveryManMappingConfigurations
     {
         TypeAdapterConfig<CreateDeliveryManModel, DeliveryManDTO>
             .NewConfig()
+            .Map(dest => dest.Identifier, src => src.Identifier)
             .Map(dest => dest.Name, src => src.Name)
             .Map(dest => dest.DriverLicenseNumber, src => src.DriverLicenseNumber)
             .Map(dest => dest.DriverLicenseType, src => src.DriverLicenseType)
@@ -19,6 +20,7 @@ public static class DeliveryManMappingConfigurations
 
         TypeAdapterConfig<DeliveryManDTO, DeliveryMan>
             .NewConfig()
+            .Map(dest => dest.Identifier, src => src.Identifier)
             .Map(dest => dest.Name, src => src.Name)
             .Map(dest => dest.DriverLicenseNumber, src => src.DriverLicenseNumber)
             .Map(dest => dest.DriverLicenseType, src => src.DriverLicenseType)
