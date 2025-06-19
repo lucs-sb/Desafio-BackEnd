@@ -1,7 +1,6 @@
 ﻿using Mapster;
 using MotoHub.API.Models.Administrator;
 using MotoHub.Domain.DTOs;
-using MotoHub.Domain.DTOs.Response;
 using MotoHub.Domain.Entities;
 
 namespace MotoHub.API.Mappers;
@@ -15,14 +14,9 @@ public static class AdministratorMappingConfigurations
             .Map(dest => dest.Identifier, src => src.Identifier)
             .Map(dest => dest.Password, src => src.Password);
 
-        TypeAdapterConfig<AdministratorDTO, Administrator>
+        TypeAdapterConfig<AdministratorDTO, UserAuth>
             .NewConfig()
             .Map(dest => dest.Identifier, src => src.Identifier)
-            .Map(dest => dest.Password, src => src.Password);
-
-        TypeAdapterConfig<LoginModel, LoginDTO>
-            .NewConfig()
-            .Map(dest => dest.Identifier, src => src.Identifier)
-            .Map(dest => dest.Password, src => src.Password);
+            .Map(dest => dest.IsAdmin, src => true);
     }
 }

@@ -10,7 +10,7 @@ namespace MotoHub.API.Controllers
 {
     [ApiController]
     [Route("motos")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class MotorcycleController : ControllerBase
     {
         private readonly IMotorcycleService _motorcycleService;

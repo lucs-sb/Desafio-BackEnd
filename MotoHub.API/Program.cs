@@ -1,6 +1,8 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using MotoHub.API.Extensions;
 using MotoHub.API.Mappers;
 using MotoHub.CrossCutting.IoC;
@@ -41,7 +43,22 @@ builder.Services.AddFluentValidationAutoValidation()
 //Mapster
 builder.Services.RegisterMaps();
 
-builder.Services.AddAuthenticationSettings(builder.Configuration);
+builder.Services.AddAuthentication(authOptions =>
+{
+    authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        ValidateLifetime = true,
+        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["AuthSettings:SecretKey"]!)),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
 
 builder.Services.AddAuthorization();
 

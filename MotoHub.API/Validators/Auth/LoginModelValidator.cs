@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
-using MotoHub.API.Models.Administrator;
+using MotoHub.API.Models.Auth;
 using MotoHub.API.Resources;
 
-namespace MotoHub.API.Validators.Administrador;
+namespace MotoHub.API.Validators.Auth;
 
 public class LoginModelValidator : AbstractValidator<LoginModel>
 {

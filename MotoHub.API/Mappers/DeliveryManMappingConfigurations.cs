@@ -12,6 +12,7 @@ public static class DeliveryManMappingConfigurations
         TypeAdapterConfig<CreateDeliveryManModel, DeliveryManDTO>
             .NewConfig()
             .Map(dest => dest.Identifier, src => src.Identifier)
+            .Map(dest => dest.Password, src => src.Password)
             .Map(dest => dest.Name, src => src.Name)
             .Map(dest => dest.DriverLicenseNumber, src => src.DriverLicenseNumber)
             .Map(dest => dest.DriverLicenseType, src => src.DriverLicenseType)
@@ -26,5 +27,10 @@ public static class DeliveryManMappingConfigurations
             .Map(dest => dest.DriverLicenseType, src => src.DriverLicenseType)
             .Map(dest => dest.TaxNumber, src => src.TaxNumber)
             .Map(dest => dest.DateOfBirth, src => src.DateOfBirth);
+
+        TypeAdapterConfig<DeliveryManDTO, UserAuth>
+            .NewConfig()
+            .Map(dest => dest.Identifier, src => src.Identifier)
+            .Map(dest => dest.IsAdmin, src => false);
     }
 }

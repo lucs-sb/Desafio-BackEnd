@@ -15,11 +15,14 @@ public class TokenService : ITokenService
 
     public TokenService(IOptions<AuthSettings> authSettings) => _authSettings = authSettings;
 
-    public Task<LoginResponseDTO> GenerateToken(string id)
+    public Task<LoginResponseDTO> GenerateToken(string id, bool isAdmin)
     {
         List<Claim> claims =
         [
-            new("Id", id)
+            new Claim(JwtRegisteredClaimNames.Sub, id),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(ClaimTypes.NameIdentifier, id),
+            new Claim(ClaimTypes.Role, isAdmin ? "Admin" : "DeliveryMan")
         ];
 
         DateTime expires = DateTime.UtcNow.AddMinutes(_authSettings.Value.AccessTokenExpirationMinutes);

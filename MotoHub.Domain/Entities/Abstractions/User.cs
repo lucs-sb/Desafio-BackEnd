@@ -12,9 +12,6 @@ public abstract class User
     [Column("id")]
     public Guid? Id { get; set; }
 
-    [Column("password")]
-    public string? Password { get; set; }
-
     [Column("identifier")]
     public string? Identifier { get; set; }
 }

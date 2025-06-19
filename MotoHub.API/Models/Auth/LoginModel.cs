@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace MotoHub.API.Models.Administrator;
+namespace MotoHub.API.Models.Auth;
 
 public class LoginModel
 {

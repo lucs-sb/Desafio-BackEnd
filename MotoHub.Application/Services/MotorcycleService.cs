@@ -25,7 +25,12 @@ public class MotorcycleService : IMotorcycleService
 
         try
         {
-            Motorcycle motorcycle = motorcycleDTO.Adapt<Motorcycle>();
+            Motorcycle? motorcycle = await _motorcycleRepository.GetByIdentifierAsync(motorcycleDTO.Identifier);
+            
+            if (motorcycle != null)
+                throw new Exception("Já existe uma moto com este identificador.");
+
+            motorcycle = motorcycleDTO.Adapt<Motorcycle>();
 
             await _motorcycleRepository.AddAsync(motorcycle);
 

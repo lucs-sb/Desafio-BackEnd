@@ -1,4 +1,5 @@
 ﻿using Mapster;
+using Microsoft.AspNetCore.Identity;
 using MotoHub.Domain.DTOs;
 using MotoHub.Domain.Entities;
 using MotoHub.Domain.Interfaces;
@@ -9,10 +10,12 @@ namespace MotoHub.Application.Services;
 public class DeliveryManService : IDeliveryManService
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IPasswordHasher<UserAuth> _passwordHasher;
 
-    public DeliveryManService(IUnitOfWork unitOfWork)
+    public DeliveryManService(IUnitOfWork unitOfWork, IPasswordHasher<UserAuth> passwordHasher)
     {
         _unitOfWork = unitOfWork;
+        _passwordHasher = passwordHasher;
     }
 
     public async Task CreateAsync(DeliveryManDTO deliveryManDTO)
@@ -21,9 +24,18 @@ public class DeliveryManService : IDeliveryManService
 
         try
         {
-            DeliveryMan deliveryMan = deliveryManDTO.Adapt<DeliveryMan>();
+            UserAuth? user = await _unitOfWork.Repository<UserAuth>().GetByIdentifierAsync(deliveryManDTO.Identifier);
 
-            //deliveryMan.Password = _passwordHasher.HashPassword(deliveryMan, deliveryManDTO.Password);
+            if (user != null)
+                throw new Exception("Já existe um entregador com este identificador.");
+
+            user = deliveryManDTO.Adapt<UserAuth>();
+
+            user.Password = _passwordHasher.HashPassword(user, deliveryManDTO.Password);
+
+            await _unitOfWork.Repository<UserAuth>().AddAsync(user);
+
+            DeliveryMan deliveryMan = deliveryManDTO.Adapt<DeliveryMan>();
 
             await _unitOfWork.Repository<DeliveryMan>().AddAsync(deliveryMan);
 

@@ -22,6 +22,7 @@ public static class PipelineExtensions
         services.AddScoped<IDeliveryManService, DeliveryManService>();
         services.AddScoped<IMotorcycleService, MotorcycleService>();
         services.AddScoped<IRentalService, RentalService>();
+        services.AddScoped<IAuthService, AuthService>();
     }
 
     public static void AddAInfrastructureDI(this IServiceCollection services)
@@ -39,25 +40,5 @@ public static class PipelineExtensions
     {
         services.Configure<MotoHubDatabaseSettings>(configuration.GetSection("MotoHubDatabase"));
         services.Configure<AuthSettings>(configuration.GetSection("AuthSettings"));
-    }
-
-    public static void AddAuthenticationSettings(this IServiceCollection services, IConfiguration configuration)
-    {
-        services.AddAuthentication(authOptions =>
-        {
-            authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        }).AddJwtBearer(options =>
-        {
-            options.RequireHttpsMetadata = false;
-            options.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                ValidateLifetime = true,
-                IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["AuthSettings:SecretKey"]!)),
-                ValidateIssuer = false,
-                ValidateAudience = false
-            };
-        });
     }
 }

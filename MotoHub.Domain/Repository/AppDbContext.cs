@@ -7,7 +7,7 @@ public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-    public DbSet<Administrator> Administrator { get; set; }
+    public DbSet<UserAuth> UserAuth { get; set; }
     public DbSet<DeliveryMan> DeliveryMen { get; set; }
     public DbSet<Motorcycle> Motorcycles { get; set; }
     public DbSet<Rental> Rentals { get; set; }
