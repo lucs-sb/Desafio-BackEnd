@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MotoHub.Application.Services;
 using MotoHub.Domain.Interfaces;
-using MotoHub.Domain.Interfaces.Repositories;
+using MotoHub.Domain.Interfaces.Repositories.Base;
 using MotoHub.Domain.Settings;
 using MotoHub.Infrastructure.Auth;
-using MotoHub.Infrastructure.Repositories;
+using MotoHub.Infrastructure.Repositories.Base;
 
 namespace MotoHub.CrossCutting.IoC;
 
@@ -23,12 +24,12 @@ public static class PipelineExtensions
 
     public static void AddAInfrastructureDI(this IServiceCollection services)
     {
-        services.AddScoped<IAdministradorRepository, AdministradorRepository>();
-        services.AddScoped<IDeliveryManRepository, DeliveryManRepository>();
-        services.AddScoped<IMotorcycleRepository, MotorcycleRepository>();
-        services.AddScoped<IRentalRepository, RentalRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
         services.AddScoped<ITokenService, TokenService>();
+
+        services.AddScoped(typeof(IPasswordHasher<>), typeof(PasswordHasher<>));
     }
 
     public static void AddSettings(this IServiceCollection services, IConfiguration configuration)
