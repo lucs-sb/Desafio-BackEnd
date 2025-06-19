@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MotoHub.Domain.Entities;
 
-[Table("administradors")]
-public class Administrador : User
+[Table("administrator")]
+public class Administrator : User
 {
 }

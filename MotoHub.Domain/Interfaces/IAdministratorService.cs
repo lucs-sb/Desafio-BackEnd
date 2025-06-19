@@ -3,9 +3,9 @@ using MotoHub.Domain.DTOs.Response;
 
 namespace MotoHub.Domain.Interfaces;
 
-public interface IAdministradorService
+public interface IAdministratorService
 {
-    Task CreateAsync(AdministradorDTO administradorDTO);
+    Task CreateAsync(AdministratorDTO administradorDTO);
 
     Task<LoginResponseDTO> LoginAsync(LoginDTO loginDTO);
 }

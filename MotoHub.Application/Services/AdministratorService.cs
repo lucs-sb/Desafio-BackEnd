@@ -8,30 +8,30 @@ using MotoHub.Domain.Interfaces.Repositories.Base;
 
 namespace MotoHub.Application.Services
 {
-    public class AdministradorService : IAdministradorService
+    public class AdministratorService : IAdministratorService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IPasswordHasher<Administrador> _passwordHasher;
+        private readonly IPasswordHasher<Administrator> _passwordHasher;
         private readonly ITokenService _tokenService;
 
-        public AdministradorService(IUnitOfWork unitOfWork, IPasswordHasher<Administrador> passwordHasher, ITokenService tokenService)
+        public AdministratorService(IUnitOfWork unitOfWork, IPasswordHasher<Administrator> passwordHasher, ITokenService tokenService)
         {
             _unitOfWork = unitOfWork;
             _passwordHasher = passwordHasher;
             _tokenService = tokenService;
         }
 
-        public async Task CreateAsync(AdministradorDTO administradorDTO)
+        public async Task CreateAsync(AdministratorDTO administradorDTO)
         {
             await _unitOfWork.BeginTransactionAsync();
 
             try
             {
-                Administrador administrador = administradorDTO.Adapt<Administrador>();
+                Administrator administrador = administradorDTO.Adapt<Administrator>();
 
                 administrador.Password = _passwordHasher.HashPassword(administrador, administradorDTO.Password);
 
-                await _unitOfWork.Repository<Administrador>().AddAsync(administrador);
+                await _unitOfWork.Repository<Administrator>().AddAsync(administrador);
 
                 await _unitOfWork.CommitAsync();
             }
@@ -45,7 +45,7 @@ namespace MotoHub.Application.Services
 
         public async Task<LoginResponseDTO> LoginAsync(LoginDTO loginDTO)
         {
-            Administrador administrador = await _unitOfWork.Repository<Administrador>().GetByIdAsync(loginDTO.Identifier) ?? throw new Exception();
+            Administrator administrador = await _unitOfWork.Repository<Administrator>().GetByIdAsync(loginDTO.Identifier) ?? throw new Exception();
 
             if (_passwordHasher.VerifyHashedPassword(administrador, administrador.Password!, loginDTO.Password) is PasswordVerificationResult.Failed)
                 throw new Exception();

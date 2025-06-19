@@ -21,8 +21,8 @@ services:
 
   api:
     build:
-      context: MotoHub.API/.
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: MotoHub.API/Dockerfile
     container_name: motohub_api
     depends_on:
       - db
@@ -30,9 +30,11 @@ services:
       - motohub_network
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ConnectionStrings__DefaultConnection: "Host=motohub_db;Port=5432;Pooling=true;Database=motohub;Username=admin;Password=admin"
+      ConnectionStrings__MotoHubDatabase: "Host=motohub_db;Port=5432;Pooling=true;Database=motohub;Username=admin;Password=admin"
+      AuthSettings__SecretKey: "sfsdgshdfhththdgfhdghhs"
+      AuthSettings__AccessTokenExpirationMinutes: "30"
     ports:
-      - "8080:80"
+      - "8080:8080"
 
 volumes:
   db-data:

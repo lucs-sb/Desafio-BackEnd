@@ -1,6 +1,6 @@
-﻿namespace MotoHub.API.Models.Administrador;
+﻿namespace MotoHub.API.Models.Administrator;
 
-public class LoginModel
+public class CreateAdministratorModel
 {
     public string? Identifier { get; set; }
     public string? Password { get; set; }

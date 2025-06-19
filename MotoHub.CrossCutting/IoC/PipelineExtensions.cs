@@ -16,7 +16,7 @@ public static class PipelineExtensions
 {
     public static void AddApplicationDI(this IServiceCollection services)
     {
-        services.AddScoped<IAdministradorService, AdministradorService>();
+        services.AddScoped<IAdministratorService, AdministratorService>();
         services.AddScoped<IDeliveryManService, DeliveryManService>();
         services.AddScoped<IMotorcycleService, MotorcycleService>();
         services.AddScoped<IRentalService, RentalService>();
@@ -51,7 +51,7 @@ public static class PipelineExtensions
             {
                 ValidateIssuerSigningKey = true,
                 ValidateLifetime = true,
-                IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["AuthConfiguration:SecretKey"]!)),
+                IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["AuthSettings:SecretKey"]!)),
                 ValidateIssuer = false,
                 ValidateAudience = false
             };

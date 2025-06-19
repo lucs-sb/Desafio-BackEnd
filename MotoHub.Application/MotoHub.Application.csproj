@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MotoHub.Domain\MotoHub.Domain.csproj" />
-    <ProjectReference Include="..\MotoHub.Repository\MotoHub.Infrastructure.csproj" />
+    <ProjectReference Include="..\MotoHub.Infrastructure\MotoHub.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

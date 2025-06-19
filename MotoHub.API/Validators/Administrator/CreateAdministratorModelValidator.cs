@@ -1,12 +1,12 @@
 ﻿using FluentValidation;
-using MotoHub.API.Models.Administrador;
+using MotoHub.API.Models.Administrator;
 using MotoHub.API.Resources;
 
-namespace MotoHub.API.Validators.Administrador;
+namespace MotoHub.API.Validators.Administrator;
 
-public class CreateAdministradorModelValidator : AbstractValidator<CreateAdministradorModel>
+public class CreateAdministratorModelValidator : AbstractValidator<CreateAdministratorModel>
 {
-    public CreateAdministradorModelValidator()
+    public CreateAdministratorModelValidator()
     {
         RuleFor(model => model.Identifier)
             .NotEmpty()
