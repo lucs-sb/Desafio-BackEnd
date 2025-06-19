@@ -54,7 +54,7 @@ builder.Services.AddAuthentication(authOptions =>
     {
         ValidateIssuerSigningKey = true,
         ValidateLifetime = true,
-        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["AuthSettings:SecretKey"]!)),
+        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["AuthSettings:SecretKey"]!)),
         ValidateIssuer = false,
         ValidateAudience = false
     };
