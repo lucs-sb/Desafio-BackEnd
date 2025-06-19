@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 using MotoHub.Domain.Interfaces.Repositories.Base;
 using MotoHub.Domain.Repository;
-using System.Linq.Expressions;
 
 namespace MotoHub.Infrastructure.Repositories.Base;
 
@@ -12,19 +10,13 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 
     public Repository(AppDbContext dbContext) => _dbContext = dbContext;
 
+    public async Task<List<TEntity>> GetAllAsync() => await _dbContext.Set<TEntity>().ToListAsync();
+
     public async Task<TEntity?> GetByIdentifierAsync(string identifier) => await _dbContext.Set<TEntity>().FirstOrDefaultAsync(e => EF.Property<string>(e, "Identifier") == identifier);
 
-    public async Task AddAsync(TEntity entity) => await _dbContext.Set<TEntity>().AddAsync(entity).AsTask();
+    public async Task AddAsync(TEntity entity) => await _dbContext.Set<TEntity>().AddAsync(entity);
 
-    public async Task ExecuteUpdateAsync(Expression<Func<TEntity, bool>> filter, Expression<Func<SetPropertyCalls<TEntity>, SetPropertyCalls<TEntity>>> setProperties)
-    {
-        var query = _dbContext.Set<TEntity>().Where(filter);
-        await query.ExecuteUpdateAsync(setProperties);
-    }
+    public void Update(TEntity entity) => _dbContext.Set<TEntity>().Update(entity);
 
-    public async Task ExecuteDeleteAsync(Expression<Func<TEntity, bool>> filter)
-    {
-        var query = _dbContext.Set<TEntity>().Where(filter);
-        await query.ExecuteDeleteAsync();
-    }
+    public void Remove(TEntity entity) => _dbContext.Set<TEntity>().Remove(entity);
 }
