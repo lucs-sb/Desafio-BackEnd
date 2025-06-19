@@ -5,9 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MotoHub.Application.Services;
 using MotoHub.Domain.Interfaces;
+using MotoHub.Domain.Interfaces.Repositories;
 using MotoHub.Domain.Interfaces.Repositories.Base;
 using MotoHub.Domain.Settings;
 using MotoHub.Infrastructure.Auth;
+using MotoHub.Infrastructure.Repositories;
 using MotoHub.Infrastructure.Repositories.Base;
 
 namespace MotoHub.CrossCutting.IoC;
@@ -26,6 +28,7 @@ public static class PipelineExtensions
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        services.AddScoped<IMotorcycleRepository, MotorcycleRepository>();
 
         services.AddScoped<ITokenService, TokenService>();
 

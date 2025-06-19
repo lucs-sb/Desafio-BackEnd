@@ -1,6 +1,7 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using MotoHub.API.Extensions;
 using MotoHub.API.Mappers;
 using MotoHub.CrossCutting.IoC;
 using MotoHub.Domain.Repository;
@@ -13,10 +14,10 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-})/*.ConfigureApiBehaviorOptions(options =>
+}).ConfigureApiBehaviorOptions(options =>
 {
     options.InvalidModelStateResponseFactory = context => new CustomInvalidModelError().CustomErrorResponse(context);
-})*/ ;
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

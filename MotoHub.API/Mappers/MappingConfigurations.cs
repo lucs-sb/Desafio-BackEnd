@@ -6,6 +6,7 @@ public static class MappingConfigurations
     {
         services.RegisterAdministradorMaps();
         services.RegisterDeliveryManMaps();
+        services.RegisterMotorcycleMaps();
 
         return services;
     }
