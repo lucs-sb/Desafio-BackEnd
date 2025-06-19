@@ -2,16 +2,17 @@
 using MotoHub.Domain.Entities;
 using MotoHub.Domain.Interfaces;
 using MotoHub.Domain.Interfaces.Repositories;
+using MotoHub.Domain.Interfaces.Repositories.Base;
 
 namespace MotoHub.Application.Services;
 
 public class MotorcycleService : IMotorcycleService
 {
-    private readonly IMotorcycleRepository _motorcycleRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public MotorcycleService(IMotorcycleRepository motorcycleRepository)
+    public MotorcycleService(IUnitOfWork unitOfWork)
     {
-        _motorcycleRepository = motorcycleRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public Task CreateAsync(MotorcycleDTO motorcycleDTO)

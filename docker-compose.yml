@@ -1,0 +1,38 @@
+version: '3.8'
+
+networks:
+  motohub_network:
+    driver: bridge
+
+services:
+  db:
+    image: postgres:latest
+    container_name: motohub_db
+    networks:
+      - motohub_network
+    environment:
+      POSTGRES_DB: motohub
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  api:
+    build:
+      context: MotoHub.API/.
+      dockerfile: Dockerfile
+    container_name: motohub_api
+    depends_on:
+      - db
+    networks:
+      - motohub_network
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Host=motohub_db;Port=5432;Pooling=true;Database=motohub;Username=admin;Password=admin"
+    ports:
+      - "8080:80"
+
+volumes:
+  db-data:

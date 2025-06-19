@@ -2,16 +2,17 @@
 using MotoHub.Domain.Entities;
 using MotoHub.Domain.Interfaces;
 using MotoHub.Domain.Interfaces.Repositories;
+using MotoHub.Domain.Interfaces.Repositories.Base;
 
 namespace MotoHub.Application.Services;
 
 public class RentalService : IRentalService
 {
-    private readonly IRentalRepository _rentalRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public RentalService(IRentalRepository rentalRepository)
+    public RentalService(IUnitOfWork unitOfWork)
     {
-        _rentalRepository = rentalRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public Task CreateAsync(RentalDTO rentalDTO)
