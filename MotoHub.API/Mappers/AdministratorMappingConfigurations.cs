@@ -24,10 +24,5 @@ public static class AdministratorMappingConfigurations
             .NewConfig()
             .Map(dest => dest.Identifier, src => src.Identifier)
             .Map(dest => dest.Password, src => src.Password);
-
-        TypeAdapterConfig<(string, DateTime), LoginResponseDTO>
-            .NewConfig()
-            .Map(dest => dest.access_token, src => src.Item1)
-            .Map(dest => dest.expiration, src => src.Item2);
     }
 }

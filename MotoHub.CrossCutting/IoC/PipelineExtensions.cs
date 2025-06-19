@@ -35,7 +35,7 @@ public static class PipelineExtensions
     public static void AddSettings(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<MotoHubDatabaseSettings>(configuration.GetSection("MotoHubDatabase"));
-        services.Configure<AuthSettings>(configuration.GetSection("AuthConfiguration"));
+        services.Configure<AuthSettings>(configuration.GetSection("AuthSettings"));
     }
 
     public static void AddAuthenticationSettings(this IServiceCollection services, IConfiguration configuration)

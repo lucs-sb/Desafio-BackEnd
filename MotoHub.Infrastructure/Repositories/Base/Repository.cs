@@ -12,7 +12,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 
     public Repository(AppDbContext dbContext) => _dbContext = dbContext;
 
-    public async Task<TEntity?> GetByIdAsync(object id) => await _dbContext.Set<TEntity>().FindAsync(id).AsTask();
+    public async Task<TEntity?> GetByIdentifierAsync(string identifier) => await _dbContext.Set<TEntity>().FirstOrDefaultAsync(e => EF.Property<string>(e, "Identifier") == identifier);
 
     public async Task AddAsync(TEntity entity) => await _dbContext.Set<TEntity>().AddAsync(entity).AsTask();
 

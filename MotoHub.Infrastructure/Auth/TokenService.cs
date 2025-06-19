@@ -1,5 +1,4 @@
-﻿using Mapster;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using MotoHub.Domain.DTOs.Response;
 using MotoHub.Domain.Interfaces;
@@ -32,6 +31,6 @@ public class TokenService : ITokenService
 
         string token = new JwtSecurityTokenHandler().WriteToken(tokenData);
 
-        return Task.FromResult(ValueTuple.Create(token, expires).Adapt<LoginResponseDTO>());
+        return Task.FromResult(new LoginResponseDTO(token, expires));
     }
 }

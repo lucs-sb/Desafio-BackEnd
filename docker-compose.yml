@@ -31,7 +31,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__MotoHubDatabase: "Host=motohub_db;Port=5432;Pooling=true;Database=motohub;Username=admin;Password=admin"
-      AuthSettings__SecretKey: "sfsdgshdfhththdgfhdghhs"
+      AuthSettings__SecretKey: "U7r4p$21xT!e8qLmZ9vFgH1rS6nK0wYc"
       AuthSettings__AccessTokenExpirationMinutes: "30"
     ports:
       - "8080:8080"

@@ -45,7 +45,7 @@ namespace MotoHub.Application.Services
 
         public async Task<LoginResponseDTO> LoginAsync(LoginDTO loginDTO)
         {
-            Administrator administrador = await _unitOfWork.Repository<Administrator>().GetByIdAsync(loginDTO.Identifier) ?? throw new Exception();
+            Administrator administrador = await _unitOfWork.Repository<Administrator>().GetByIdentifierAsync(loginDTO.Identifier) ?? throw new Exception();
 
             if (_passwordHasher.VerifyHashedPassword(administrador, administrador.Password!, loginDTO.Password) is PasswordVerificationResult.Failed)
                 throw new Exception();

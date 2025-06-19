@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using MotoHub.API.Models.Administrador;
+using MotoHub.API.Models.Administrator;
 using MotoHub.API.Resources;
 
 namespace MotoHub.API.Validators.Administrador;

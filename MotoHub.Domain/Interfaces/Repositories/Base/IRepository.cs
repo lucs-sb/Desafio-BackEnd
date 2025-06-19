@@ -6,7 +6,7 @@ namespace MotoHub.Domain.Interfaces.Repositories.Base;
 public interface IRepository<TEntity> where TEntity : class
 {
     Task AddAsync(TEntity entity);
-    Task<TEntity?> GetByIdAsync(object id);
+    Task<TEntity?> GetByIdentifierAsync(string identifier);
     Task ExecuteUpdateAsync(Expression<Func<TEntity, bool>> filter, Expression<Func<SetPropertyCalls<TEntity>, SetPropertyCalls<TEntity>>> setProperties);
     Task ExecuteDeleteAsync(Expression<Func<TEntity, bool>> filter);
 }
