@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MotoHub.API.Models.Motorcycle.Body;
 using System.Text.Json.Serialization;
 
 namespace MotoHub.API.Models.Motorcycle;
 
 public class UpdateMotorcycleModel
 {
-    [FromRoute]
+    [FromRoute(Name = "id")]
     public string? Identifier { get; set; }
 
     [FromBody]
-    [JsonPropertyName("placa")]
-    public string? LicensePlate { get; set; }
+    public UpdateMotorcycleBodyModel? Body { get; set; }
 }

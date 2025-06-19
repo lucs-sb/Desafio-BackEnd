@@ -4,6 +4,6 @@ namespace MotoHub.API.Models.Motorcycle;
 
 public class DeleteMotorcycleByIdentifierModel
 {
-    [FromRoute]
+    [FromRoute(Name = "id")]
     public string? Identifier { get; set; }
 }

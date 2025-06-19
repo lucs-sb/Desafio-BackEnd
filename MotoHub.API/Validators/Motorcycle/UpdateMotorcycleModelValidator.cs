@@ -12,8 +12,10 @@ public class UpdateMotorcycleModelValidator : AbstractValidator<UpdateMotorcycle
             .NotEmpty()
             .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.Identifier)));
 
-        RuleFor(x => x.LicensePlate)
-            .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.LicensePlate)));
+        RuleFor(model => model.Body!)
+            .NotNull()
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.Body)))
+            .SetValidator(model => new UpdateMotorcycleBodyModelValidator())
+            .OverridePropertyName(string.Empty);
     }
 }

@@ -37,6 +37,10 @@ namespace MotoHub.API.Mappers
                 .Map(dest => dest.LicensePlate, src => src.LicensePlate)
                 .Map(dest => dest.Model, src => src.Model)
                 .Map(dest => dest.Year, src => src.Year);
+
+            TypeAdapterConfig<UpdateMotorcycleModel, MotorcycleDTO>
+                .NewConfig()
+                .Map(dest => dest.LicensePlate, src => src.Body!.LicensePlate);
         }
     }
 }

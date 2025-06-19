@@ -29,7 +29,7 @@ namespace MotoHub.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllOrByLicensePlateAsync([FromQuery] string? licensePlate)
+        public async Task<IActionResult> GetAllOrByLicensePlateAsync([FromQuery(Name = "placa")] string? licensePlate)
         {
             List<MotorcycleResponseDTO> motorcyclesResponseDTO = await _motorcycleService.GetAllOrByLicensePlateAsync(licensePlate);
             return Ok(motorcyclesResponseDTO);
@@ -51,9 +51,9 @@ namespace MotoHub.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteByIdentifierAsync([FromRoute] string id)
+        public async Task<IActionResult> DeleteByIdentifierAsync(DeleteMotorcycleByIdentifierModel deleteMotorcycleByIdentifierModel)
         {
-            await _motorcycleService.DeleteByIdentifierAsync(id);
+            await _motorcycleService.DeleteByIdentifierAsync(deleteMotorcycleByIdentifierModel.Identifier!);
             return Ok();
         }
     }
