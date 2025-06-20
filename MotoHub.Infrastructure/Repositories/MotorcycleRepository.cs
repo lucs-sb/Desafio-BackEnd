@@ -8,7 +8,7 @@ namespace MotoHub.Infrastructure.Repositories;
 
 public class MotorcycleRepository : Repository<Motorcycle>, IMotorcycleRepository
 {
-    public MotorcycleRepository(AppDbContext context) : base(context) { }
+    public MotorcycleRepository(AppDbContext dbContext) : base(dbContext) { }
 
     public async Task<List<Motorcycle>> GetAllOrByLicensePlateAsync(string licensePlate)
     {

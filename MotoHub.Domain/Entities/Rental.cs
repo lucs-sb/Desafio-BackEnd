@@ -11,6 +11,9 @@ public class Rental
     [Column("id")]
     public int Id { get; set; }
 
+    [Column("identifier")]
+    public string? Identifier { get; set; }
+
     [Column("start_date")]
     public DateTime StartDate { get; set; }
 
@@ -28,4 +31,10 @@ public class Rental
 
     [Column("plan")]
     public int? Plan { get; set; }
+
+    [Column("value")]
+    public decimal? Value { get; set; }
+
+    [Column("return_date")]
+    public DateTime ReturnDate { get; set; }
 }

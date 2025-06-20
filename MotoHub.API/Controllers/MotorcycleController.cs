@@ -25,7 +25,7 @@ namespace MotoHub.API.Controllers
         {
             MotorcycleDTO motorcycleDTO = createMotorcycleModel.Adapt<MotorcycleDTO>();
             await _motorcycleService.CreateAsync(motorcycleDTO);
-            return Accepted();
+            return Created();
         }
 
         [HttpGet]

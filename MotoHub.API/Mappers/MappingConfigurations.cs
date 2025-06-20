@@ -8,6 +8,7 @@ public static class MappingConfigurations
         services.RegisterAuthMaps();
         services.RegisterDeliveryManMaps();
         services.RegisterMotorcycleMaps();
+        services.RegisterRentalMaps();
 
         return services;
     }

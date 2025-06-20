@@ -36,6 +36,15 @@ public class CreateDeliveryManModelValidator : AbstractValidator<CreateDeliveryM
 
         RuleFor(model => model.DateOfBirth)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.DateOfBirth)));
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.DateOfBirth)))
+            .Must(date =>
+            {
+                if (date == null) return false;
+                DateTime today = DateTime.Today;
+                int age = today.Year - date.Year;
+                if (date.Date > today.AddYears(-age)) age--;
+                return age >= 18;
+            })
+    .WithMessage("O entregador deve ter pelo menos 18 anos.");
     }
 }

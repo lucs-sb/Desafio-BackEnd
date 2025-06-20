@@ -26,6 +26,6 @@ public class AdministratorController : ControllerBase
 
         await _administratorService.CreateAsync(administratorDTO);
 
-        return Accepted();
+        return Created();
     }
 }

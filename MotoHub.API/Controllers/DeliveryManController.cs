@@ -26,6 +26,6 @@ public class DeliveryManController : ControllerBase
 
         await _deliveryManService.CreateAsync(deliveryManDTO);
 
-        return Accepted();
+        return Created();
     }
 }

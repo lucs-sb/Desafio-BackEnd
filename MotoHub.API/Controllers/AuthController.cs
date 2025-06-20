@@ -27,6 +27,6 @@ public class AuthController : ControllerBase
 
         LoginResponseDTO loginResponseDTO = await _authService.LoginAsync(loginDTO);
 
-        return StatusCode(StatusCodes.Status200OK, loginResponseDTO);
+        return Ok(loginResponseDTO);
     }
 }

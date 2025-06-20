@@ -30,6 +30,7 @@ public static class PipelineExtensions
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         services.AddScoped<IMotorcycleRepository, MotorcycleRepository>();
+        services.AddScoped<IRentalRepository, RentalRepository>();
 
         services.AddScoped<ITokenService, TokenService>();
 
