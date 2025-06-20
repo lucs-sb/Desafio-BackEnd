@@ -70,6 +70,15 @@ namespace MotoHub.Application.Resources {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Tipo de imagem inválida.
+        /// </summary>
+        public static string Invalid_Image_Warning {
+            get {
+                return ResourceManager.GetString("Invalid_Image_Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Já existe um {0} com este identificador.
         /// </summary>
         public static string Invalid_Operation_Warning {

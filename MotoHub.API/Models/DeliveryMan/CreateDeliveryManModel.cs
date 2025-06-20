@@ -24,4 +24,7 @@ public class CreateDeliveryManModel
 
     [JsonPropertyName("data_nascimento")]
     public DateTime DateOfBirth { get; set; }
+
+    [JsonPropertyName("imagem_cnh")]
+    public string? DriverLicenseImage { get; set; }
 }

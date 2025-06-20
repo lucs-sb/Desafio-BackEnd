@@ -28,4 +28,11 @@ public class DeliveryManController : ControllerBase
 
         return Created();
     }
+
+    [HttpPost("{id}/cnh")]
+    public async Task<IActionResult> UpdateLicensePlateByIdentifierAsync([FromRoute(Name = "id")] string identifier, [FromBody] UpdateDeliveryManModel updateDeliveryManModel)
+    {
+        await _deliveryManService.UpdateAsync(identifier, updateDeliveryManModel.DriverLicenseImage!);
+        return Created();
+    }
 }

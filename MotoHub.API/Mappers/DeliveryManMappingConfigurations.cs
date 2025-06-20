@@ -17,6 +17,7 @@ public static class DeliveryManMappingConfigurations
             .Map(dest => dest.DriverLicenseNumber, src => src.DriverLicenseNumber)
             .Map(dest => dest.DriverLicenseType, src => src.DriverLicenseType)
             .Map(dest => dest.TaxNumber, src => src.TaxNumber)
+            .Map(dest => dest.DriverLicenseImage, src => src.DriverLicenseImage)
             .Map(dest => dest.DateOfBirth, src => src.DateOfBirth);
 
         TypeAdapterConfig<DeliveryManDTO, DeliveryMan>

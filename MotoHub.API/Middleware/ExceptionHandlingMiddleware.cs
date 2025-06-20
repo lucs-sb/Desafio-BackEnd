@@ -26,7 +26,7 @@ public class ExceptionHandlingMiddleware
 
             var result = System.Text.Json.JsonSerializer.Serialize(new
             {
-                error = ex.Message
+                mensagem = ex.Message
             });
 
             await context.Response.WriteAsync(result);

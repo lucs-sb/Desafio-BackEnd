@@ -120,6 +120,9 @@
   <data name="Invalid_DeliveryMan_Warning" xml:space="preserve">
     <value>Entregador não possui carteira do tipo A</value>
   </data>
+  <data name="Invalid_Image_Warning" xml:space="preserve">
+    <value>Tipo de imagem inválida</value>
+  </data>
   <data name="Invalid_Operation_Warning" xml:space="preserve">
     <value>Já existe um {0} com este identificador</value>
   </data>

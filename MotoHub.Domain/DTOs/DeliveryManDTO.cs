@@ -6,6 +6,7 @@ public record DeliveryManDTO (string Identifier,
     string DriverLicenseNumber, 
     string DriverLicenseType, 
     string TaxNumber, 
-    DateTime DateOfBirth)
+    DateTime DateOfBirth,
+    string? DriverLicenseImage)
 {
 }
