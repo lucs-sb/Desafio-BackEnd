@@ -10,10 +10,10 @@ public class LoginModelValidator : AbstractValidator<LoginModel>
     {
         RuleFor(model => model.Identifier)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.Identifier)));
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, "identificador"));
 
         RuleFor(model => model.Password)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.Password)));
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, "senha"));
     }
 }

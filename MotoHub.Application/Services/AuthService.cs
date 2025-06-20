@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using MotoHub.Application.Resources;
 using MotoHub.Domain.DTOs;
 using MotoHub.Domain.DTOs.Response;
 using MotoHub.Domain.Entities;
@@ -22,11 +23,22 @@ public class AuthService : IAuthService
 
     public async Task<LoginResponseDTO> LoginAsync(LoginDTO loginDTO)
     {
-        UserAuth user = await _unitOfWork.Repository<UserAuth>().GetByIdentifierAsync(loginDTO.Identifier) ?? throw new Exception();
+        try
+        {
+            UserAuth user = await _unitOfWork.Repository<UserAuth>().GetByIdentifierAsync(loginDTO.Identifier) ?? throw new InvalidOperationException(string.Format(BusinessMessage.Unauthorized_Warning));
 
-        if (_passwordHasher.VerifyHashedPassword(user, user.Password!, loginDTO.Password) is PasswordVerificationResult.Failed)
-            throw new Exception();
+            if (_passwordHasher.VerifyHashedPassword(user, user.Password!, loginDTO.Password) is PasswordVerificationResult.Failed)
+                throw new InvalidOperationException(string.Format(BusinessMessage.Unauthorized_Warning));
 
-        return await _tokenService.GenerateToken(user.Id.ToString()!, user.IsAdmin);
+            return await _tokenService.GenerateToken(user.Id.ToString()!, user.IsAdmin);
+        }
+        catch (InvalidOperationException)
+        {
+            throw;
+        }
+        catch (Exception)
+        {
+            throw new UnauthorizedAccessException();
+        }
     }
 }

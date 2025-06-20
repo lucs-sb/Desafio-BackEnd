@@ -10,24 +10,24 @@ public class CreateMotorcycleModelValidator : AbstractValidator<CreateMotorcycle
     {
         RuleFor(x => x.Identifier)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.Identifier)))
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, "identificador"))
             .MaximumLength(32)
-            .WithMessage(model => string.Format(ApiMessage.Invalid_Warning, nameof(model.Model)));
+            .WithMessage(model => string.Format(ApiMessage.Invalid_Warning, "identificador"));
 
         RuleFor(x => x.LicensePlate)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.LicensePlate)));
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, "placa"));
 
         RuleFor(x => x.Model)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.Model)))
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, "modelo"))
             .MaximumLength(50)
-            .WithMessage(model => string.Format(ApiMessage.Invalid_Warning, nameof(model.Model)));
+            .WithMessage(model => string.Format(ApiMessage.Invalid_Warning, "modelo"));
 
         RuleFor(x => x.Year)
             .NotNull()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.Year)))
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, "ano"))
             .InclusiveBetween(1900, DateTime.UtcNow.Year + 1)
-            .WithMessage(model => string.Format(ApiMessage.Invalid_Warning, nameof(model.Year)));
+            .WithMessage(model => string.Format(ApiMessage.Invalid_Warning, "ano"));
     }
 }

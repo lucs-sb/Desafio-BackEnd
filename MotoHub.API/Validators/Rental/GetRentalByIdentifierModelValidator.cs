@@ -10,6 +10,6 @@ public class GetRentalByIdentifierModelValidator : AbstractValidator<GetRentalBy
     {
         RuleFor(x => x.Identifier)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.Identifier)));
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, "id"));
     }
 }

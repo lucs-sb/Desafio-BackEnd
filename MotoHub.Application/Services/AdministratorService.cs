@@ -1,5 +1,6 @@
 ﻿using Mapster;
 using Microsoft.AspNetCore.Identity;
+using MotoHub.Application.Resources;
 using MotoHub.Domain.DTOs;
 using MotoHub.Domain.Entities;
 using MotoHub.Domain.Interfaces;
@@ -18,20 +19,20 @@ namespace MotoHub.Application.Services
             _passwordHasher = passwordHasher;
         }
 
-        public async Task CreateAsync(AdministratorDTO administradorDTO)
+        public async Task CreateAsync(AdministratorDTO administratorDTO)
         {
             await _unitOfWork.BeginTransactionAsync();
 
             try
             {
-                UserAuth? administrador = await _unitOfWork.Repository<UserAuth>().GetByIdentifierAsync(administradorDTO.Identifier);
+                UserAuth? administrador = await _unitOfWork.Repository<UserAuth>().GetByIdentifierAsync(administratorDTO.Identifier);
 
                 if (administrador != null)
-                    throw new Exception("Já existe um administrador com este identificador.");
+                    throw new InvalidOperationException(string.Format(BusinessMessage.Invalid_Operation_Warning, "administrator"));
 
-                administrador = administradorDTO.Adapt<UserAuth>();
+                administrador = administratorDTO.Adapt<UserAuth>();
 
-                administrador.Password = _passwordHasher.HashPassword(administrador, administradorDTO.Password);
+                administrador.Password = _passwordHasher.HashPassword(administrador, administratorDTO.Password);
 
                 await _unitOfWork.Repository<UserAuth>().AddAsync(administrador);
 

@@ -1,5 +1,6 @@
 ﻿using Mapster;
 using Microsoft.AspNetCore.Identity;
+using MotoHub.Application.Resources;
 using MotoHub.Domain.DTOs;
 using MotoHub.Domain.Entities;
 using MotoHub.Domain.Interfaces;
@@ -27,7 +28,7 @@ public class DeliveryManService : IDeliveryManService
             UserAuth? user = await _unitOfWork.Repository<UserAuth>().GetByIdentifierAsync(deliveryManDTO.Identifier);
 
             if (user != null)
-                throw new Exception("Já existe um entregador com este identificador.");
+                throw new InvalidOperationException(string.Format(BusinessMessage.Invalid_Operation_Warning, "entregador"));
 
             user = deliveryManDTO.Adapt<UserAuth>();
 

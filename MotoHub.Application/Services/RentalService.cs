@@ -1,4 +1,5 @@
 ﻿using Mapster;
+using MotoHub.Application.Resources;
 using MotoHub.Domain.DTOs;
 using MotoHub.Domain.DTOs.Response;
 using MotoHub.Domain.Entities;
@@ -30,15 +31,15 @@ public class RentalService : IRentalService
 
         try
         {
-            DeliveryMan deliveryMan = await _unitOfWork.Repository<DeliveryMan>().GetByIdentifierAsync(rentalDTO.DeliveryManIdentifier!) ?? throw new Exception();
+            DeliveryMan deliveryMan = await _unitOfWork.Repository<DeliveryMan>().GetByIdentifierAsync(rentalDTO.DeliveryManIdentifier!) ?? throw new KeyNotFoundException(string.Format(BusinessMessage.NotFound_Warning, "entregador"));
 
             if (!deliveryMan.DriverLicenseType!.Contains('A'))
-                throw new Exception();
+                throw new InvalidOperationException(string.Format(BusinessMessage.Invalid_DeliveryMan_Warning));
 
             Rental? rentalOld = await _rentalRepository.GetByMotorcycleIdentifierAsync(rentalDTO.MotorcycleIdentifier!);
 
             if (rentalOld != null && rentalOld.ReturnDate.Date > DateTime.Now.Date)
-                throw new Exception();
+                throw new InvalidOperationException(string.Format(BusinessMessage.Invalid_Rental_Warning));
 
             Rental rental = rentalDTO.Adapt<Rental>();
 
@@ -56,14 +57,14 @@ public class RentalService : IRentalService
 
     public async Task<RentalResponseDTO> GetByIdAsync(string identifier)
     {
-        Rental rental = await _rentalRepository.GetByIdentifierAsync(identifier) ?? throw new Exception();
+        Rental rental = await _rentalRepository.GetByIdentifierAsync(identifier) ?? throw new KeyNotFoundException(string.Format(BusinessMessage.NotFound_Warning, "locação"));
 
         return rental.Adapt<RentalResponseDTO>();
     }
 
     public async Task UpdateAsync(string identifier, DateTime returnDate)
     {
-        Rental rental = await _rentalRepository.GetByIdentifierAsync(identifier) ?? throw new Exception();
+        Rental rental = await _rentalRepository.GetByIdentifierAsync(identifier) ?? throw new KeyNotFoundException(string.Format(BusinessMessage.NotFound_Warning, "locação"));
 
         decimal pricePerDay = _planPrices[rental.Plan!.Value];
         int plannedDays = rental.Plan!.Value;

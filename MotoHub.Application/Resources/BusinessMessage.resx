@@ -117,16 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Invalid.Warning" xml:space="preserve">
-    <value>Campo '{0}' inválido</value>
+  <data name="Invalid_DeliveryMan_Warning" xml:space="preserve">
+    <value>Entregador não possui carteira do tipo A</value>
   </data>
-  <data name="Require.Warning" xml:space="preserve">
-    <value>O campo '{0}' é obrigatório</value>
+  <data name="Invalid_Operation_Warning" xml:space="preserve">
+    <value>Já existe um {0} com este identificador</value>
   </data>
-  <data name="Date.Warning" xml:space="preserve">
-    <value>O campo '{0}' deve ser igual ou superior a data atual</value>
+  <data name="Invalid_Rental_Warning" xml:space="preserve">
+    <value>Moto indisponível</value>
   </data>
-  <data name="Location.StartDate.Warning" xml:space="preserve">
-    <value>A locação deve começar no primeiro dia após a criação</value>
+  <data name="NotFound_Warning" xml:space="preserve">
+    <value>{0} não encontrado(a)</value>
+  </data>
+  <data name="Unauthorized_Warning" xml:space="preserve">
+    <value>Identificador ou senha incorreto</value>
   </data>
 </root>

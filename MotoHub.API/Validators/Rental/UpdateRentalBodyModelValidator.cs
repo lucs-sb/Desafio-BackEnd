@@ -10,8 +10,8 @@ public class UpdateRentalBodyModelValidator : AbstractValidator<UpdateRentalBody
     {
         RuleFor(x => x.ReturnDate)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.ReturnDate)))
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, "data_devolucao"))
             .GreaterThanOrEqualTo(DateTime.Now)
-            .WithMessage("Data de término deve ser posterior à data de início."); ;
+            .WithMessage(string.Format(ApiMessage.Date_Warning, "data_devolucao"));
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using MotoHub.API.Extensions;
 using MotoHub.API.Mappers;
+using MotoHub.API.Middleware;
 using MotoHub.CrossCutting.IoC;
 using MotoHub.Domain.Repository;
 using System.Text.Json.Serialization;
@@ -76,6 +77,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 

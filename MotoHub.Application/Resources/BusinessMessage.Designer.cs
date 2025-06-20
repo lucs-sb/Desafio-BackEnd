@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MotoHub.API.Resources {
+namespace MotoHub.Application.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace MotoHub.API.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ApiMessage {
+    public class BusinessMessage {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ApiMessage() {
+        internal BusinessMessage() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace MotoHub.API.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MotoHub.API.Resources.ApiMessage", typeof(ApiMessage).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MotoHub.Application.Resources.BusinessMessage", typeof(BusinessMessage).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -59,48 +59,49 @@ namespace MotoHub.API.Resources {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to O campo &apos;{0}&apos; é obrigatório.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Entregador não possui carteira do tipo A.
         /// </summary>
-        public static string Require_Warning
-        {
-            get
-            {
-                return ResourceManager.GetString("Require.Warning", resourceCulture);
+        public static string Invalid_DeliveryMan_Warning {
+            get {
+                return ResourceManager.GetString("Invalid_DeliveryMan_Warning", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Campo &apos;{0}&apos; inválido.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Já existe um {0} com este identificador.
         /// </summary>
-        public static string Invalid_Warning
-        {
-            get
-            {
-                return ResourceManager.GetString("Invalid.Warning", resourceCulture);
+        public static string Invalid_Operation_Warning {
+            get {
+                return ResourceManager.GetString("Invalid_Operation_Warning", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to O campo &apos;{0}&apos; deve ser igual ou superior a data atual.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Moto indisponível.
         /// </summary>
-        public static string Date_Warning
-        {
-            get
-            {
-                return ResourceManager.GetString("Date.Warning", resourceCulture);
+        public static string Invalid_Rental_Warning {
+            get {
+                return ResourceManager.GetString("Invalid_Rental_Warning", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to A locação deve começar no primeiro dia após a criação.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a {0} não encontrado(a).
         /// </summary>
-        public static string Location_StartDate_Warning
-        {
-            get
-            {
-                return ResourceManager.GetString("Location.StartDate.Warning", resourceCulture);
+        public static string NotFound_Warning {
+            get {
+                return ResourceManager.GetString("NotFound_Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Identificador ou senha incorreto.
+        /// </summary>
+        public static string Unauthorized_Warning {
+            get {
+                return ResourceManager.GetString("Unauthorized_Warning", resourceCulture);
             }
         }
     }

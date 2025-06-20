@@ -10,33 +10,35 @@ public class CreateDeliveryManModelValidator : AbstractValidator<CreateDeliveryM
     {
         RuleFor(model => model.Identifier)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.Identifier)));
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, "identificador"));
 
         RuleFor(model => model.Password)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.Password)));
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, "senha"));
 
         RuleFor(model => model.Name)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.Name)));
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, "nome"));
 
         RuleFor(model => model.DriverLicenseNumber)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.DriverLicenseNumber)));
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, "numero_cnh"));
 
         RuleFor(model => model.DriverLicenseType)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.DriverLicenseType)))
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, "tipo_cnh"))
             .Matches(@"^(?:A|B|A\+B)$")
-            .WithMessage("Tipo de CNH inválido. Apenas 'A', 'B' ou 'A+B'."); ;
+            .WithMessage(string.Format(ApiMessage.Invalid_Warning, "tipo_cnh"));
 
         RuleFor(model => model.TaxNumber)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.TaxNumber)));
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, "cnpj"))
+            .Length(14)
+            .WithMessage(string.Format(ApiMessage.Invalid_Warning, "cnpj"));
 
         RuleFor(model => model.DateOfBirth)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.DateOfBirth)))
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, "data_nascimento"))
             .Must(date =>
             {
                 if (date == null) return false;
@@ -45,6 +47,6 @@ public class CreateDeliveryManModelValidator : AbstractValidator<CreateDeliveryM
                 if (date.Date > today.AddYears(-age)) age--;
                 return age >= 18;
             })
-    .WithMessage("O entregador deve ter pelo menos 18 anos.");
+            .WithMessage(string.Format(ApiMessage.Invalid_Warning, "data_nascimento"));
     }
 }

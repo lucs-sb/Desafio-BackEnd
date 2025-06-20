@@ -10,6 +10,6 @@ public class UpdateMotorcycleBodyModelValidator : AbstractValidator<UpdateMotorc
     {
         RuleFor(x => x.LicensePlate)
             .NotEmpty()
-            .WithMessage(model => string.Format(ApiMessage.Require_Warning, nameof(model.LicensePlate)));
+            .WithMessage(model => string.Format(ApiMessage.Require_Warning, "placa"));
     }
 }

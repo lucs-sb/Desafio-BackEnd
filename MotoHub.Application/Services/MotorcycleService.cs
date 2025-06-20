@@ -1,4 +1,5 @@
 ﻿using Mapster;
+using MotoHub.Application.Resources;
 using MotoHub.Domain.DTOs;
 using MotoHub.Domain.DTOs.Response;
 using MotoHub.Domain.Entities;
@@ -28,7 +29,7 @@ public class MotorcycleService : IMotorcycleService
             Motorcycle? motorcycle = await _motorcycleRepository.GetByIdentifierAsync(motorcycleDTO.Identifier);
             
             if (motorcycle != null)
-                throw new Exception("Já existe uma moto com este identificador.");
+                throw new InvalidOperationException(string.Format(BusinessMessage.Invalid_Operation_Warning, "moto"));
 
             motorcycle = motorcycleDTO.Adapt<Motorcycle>();
 
@@ -48,7 +49,7 @@ public class MotorcycleService : IMotorcycleService
 
     public async Task<MotorcycleResponseDTO> GetByIdentifierAsync(string identifier)
     {
-        Motorcycle motorcycle = await _motorcycleRepository.GetByIdentifierAsync(identifier) ?? throw new Exception();
+        Motorcycle motorcycle = await _motorcycleRepository.GetByIdentifierAsync(identifier) ?? throw new KeyNotFoundException(string.Format(BusinessMessage.NotFound_Warning, "moto"));
 
         return motorcycle.Adapt<MotorcycleResponseDTO>();
     }
@@ -66,7 +67,7 @@ public class MotorcycleService : IMotorcycleService
 
         try
         {
-            Motorcycle motorcycle = await _motorcycleRepository.GetByIdentifierAsync(motorcycleDTO.Identifier) ?? throw new Exception();
+            Motorcycle motorcycle = await _motorcycleRepository.GetByIdentifierAsync(motorcycleDTO.Identifier) ?? throw new KeyNotFoundException(string.Format(BusinessMessage.NotFound_Warning, "moto"));
 
             motorcycle.LicensePlate = motorcycleDTO.LicensePlate;
 
@@ -88,7 +89,7 @@ public class MotorcycleService : IMotorcycleService
 
         try
         {
-            Motorcycle motorcycle = await _motorcycleRepository.GetByIdentifierAsync(identifier) ?? throw new Exception();
+            Motorcycle motorcycle = await _motorcycleRepository.GetByIdentifierAsync(identifier) ?? throw new KeyNotFoundException(string.Format(BusinessMessage.NotFound_Warning, "moto"));
 
             _motorcycleRepository.Remove(motorcycle);
 

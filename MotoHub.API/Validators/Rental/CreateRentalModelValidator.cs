@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MotoHub.API.Models.Rental;
+using MotoHub.API.Resources;
 
 namespace MotoHub.API.Validators.Rental;
 
@@ -14,37 +15,41 @@ public class CreateRentalModelValidator : AbstractValidator<CreateRentalModel>
     {
         RuleFor(x => x.StartDate)
             .NotEmpty()
+            .WithMessage(string.Format(ApiMessage.Require_Warning, "data_inicio"))
             .Must(date =>
             {
                 return date.Date == DateTime.Today.AddDays(1);
             })
-            .WithMessage("A locação deve começar no primeiro dia após a criação.");
+            .WithMessage(ApiMessage.Location_StartDate_Warning);
 
         RuleFor(x => x.EndDate)
             .NotEmpty()
-            .WithMessage("Data de término é obrigatória.")
+            .WithMessage(string.Format(ApiMessage.Require_Warning, "data_termino"))
             .GreaterThan(x => x.StartDate)
-            .WithMessage("Data de término deve ser posterior à data de início.");
+            .WithMessage(string.Format(ApiMessage.Invalid_Warning, "data_termino"));
 
         RuleFor(x => x.ExpectedEndDate)
             .NotEmpty()
-            .WithMessage("Data de previsão de término é obrigatória.")
+            .WithMessage(string.Format(ApiMessage.Require_Warning, "data_previsao_termino"))
             .GreaterThanOrEqualTo(x => x.StartDate)
-            .WithMessage("Data de previsão de término deve ser no mínimo a data de início.");
+            .WithMessage(string.Format(ApiMessage.Invalid_Warning, "data_previsao_termino"));
 
         RuleFor(x => x.Plan)
             .NotNull()
-            .WithMessage("Plano é obrigatório.")
+            .WithMessage(string.Format(ApiMessage.Require_Warning, "plano"))
             .Must(p => p.HasValue && _planPrices.ContainsKey(p.Value))
-            .WithMessage($"Plano inválido. Os planos válidos são: {string.Join(", ", _planPrices.Keys)}");
+            .WithMessage(string.Format(ApiMessage.Invalid_Warning, "plano"));
 
         RuleFor(x => x.MotorcycleIdentifier)
-            .NotEmpty().WithMessage("Moto obrigatória.");
+            .NotEmpty()
+            .WithMessage(string.Format(ApiMessage.Require_Warning, "moto_id"));
 
         RuleFor(x => x.Identifier)
-            .NotEmpty().WithMessage("Identifier obrigatória.");
+            .NotEmpty()
+            .WithMessage(string.Format(ApiMessage.Require_Warning, "identificador"));
 
         RuleFor(x => x.DeliveryManIdentifier)
-            .NotEmpty().WithMessage("Entregador obrigatório.");
+            .NotEmpty()
+            .WithMessage(string.Format(ApiMessage.Require_Warning, "entregador_id"));
     }
 }

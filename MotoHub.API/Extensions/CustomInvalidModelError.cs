@@ -28,7 +28,6 @@ public class CustomInvalidModelError
 
         var objectResult = new
         {
-            codigo = "400",
             mensagem = "Requisição inválida",
             erros = jsonResult.Select(entry => new
             {
