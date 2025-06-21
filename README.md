@@ -9,16 +9,6 @@ Abaixo está o diagrama de classes representando as entidades da aplicação:
 ## 🛠️ Como Rodar a Aplicação com Docker Compose
 Este projeto utiliza Docker e Docker Compose para facilitar a execução da API e do banco de dados PostgreSQL em containers.
 
----
-
-## ✅ Pré-requisitos
-
-- [Docker Desktop](https://www.docker.com/products/docker-desktop) instalado e em execução.
-- [Git](https://git-scm.com/) instalado.
-- A porta `8080` (API) e `5432` (PostgreSQL) devem estar livres.
-
----
-
 ## 📦 Passo a Passo
 
 ### 1. Clone o repositório
@@ -30,6 +20,4 @@ Este projeto utiliza Docker e Docker Compose para facilitar a execução da API 
 
 docker compose up -d --build
 
-### 3. Parar os containers
-
-docker compose down
+Após a execução, a API estará disponível na porta 8080.
