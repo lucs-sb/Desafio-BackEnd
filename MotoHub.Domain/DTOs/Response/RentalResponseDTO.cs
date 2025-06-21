@@ -26,7 +26,7 @@ public class RentalResponseDTO
     public int? Plan { get; set; }
 
     [JsonPropertyName("valor_diaria")]
-    public int? Value { get; set; }
+    public decimal? Value { get; set; }
 
     [JsonPropertyName("data_devolucao")]
     public DateTime ReturnDate { get; set; }

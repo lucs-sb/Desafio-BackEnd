@@ -3,6 +3,6 @@
 public record MotorcycleDTO (string Identifier, 
     string LicensePlate, 
     string Model, 
-    string Year)
+    int Year)
 {
 }

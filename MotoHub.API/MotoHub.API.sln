@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0B0C754D-D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotoHub.Infrastructure", "..\MotoHub.Infrastructure\MotoHub.Infrastructure.csproj", "{8C1BEE55-3F81-E37B-1678-F24B7BFA00AE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4C26875F-55BB-4EDF-B6B4-DC8020AE24E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotoHub.Application.Tests", "..\MotoHub.Application.Tests\MotoHub.Application.Tests.csproj", "{DA53E8EE-A5EE-4028-8CAB-D42982A06021}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,10 @@ Global
 		{8C1BEE55-3F81-E37B-1678-F24B7BFA00AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C1BEE55-3F81-E37B-1678-F24B7BFA00AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C1BEE55-3F81-E37B-1678-F24B7BFA00AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA53E8EE-A5EE-4028-8CAB-D42982A06021}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA53E8EE-A5EE-4028-8CAB-D42982A06021}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA53E8EE-A5EE-4028-8CAB-D42982A06021}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA53E8EE-A5EE-4028-8CAB-D42982A06021}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +60,7 @@ Global
 		{2BBBAFA5-AFC3-49BB-8DDD-0058DC6E786C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{5A74640B-AD20-44BB-B27E-AEA014DD6CF4} = {0B0C754D-DCDD-4366-9DF1-72818322F3B7}
 		{8C1BEE55-3F81-E37B-1678-F24B7BFA00AE} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{DA53E8EE-A5EE-4028-8CAB-D42982A06021} = {4C26875F-55BB-4EDF-B6B4-DC8020AE24E5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A8BDEF0C-10FD-4654-A4AB-15F41B39623D}
